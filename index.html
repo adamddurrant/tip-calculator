@@ -37,71 +37,86 @@
     <!--main-->
     <main
       id="container"
-      class="max-w-4xl mx-auto rounded-xl shadow-md bg-white mb-40 flex justify-center p-8 max-sm:flex-wrap max-sm:p-2"
+      class="max-w-4xl mx-auto rounded-xl shadow-md bg-white mb-20 flex justify-center p-8 max-sm:flex-wrap max-sm:p-2"
     >
       <div
         id="left"
         class="flex flex-col w-[50%] p-6 justify-center max-sm:block max-sm:w-full"
       >
-        <label class="text-sm mb-2" for="bill-input">Bill Total</label>
-        <input
-          class="bg-very-light-grayish-cyan w-full"
-          id="bill-input"
-          type="number"
-        />
+        <div class="relative" id="bill-total-wrapper">
+          <label class="text-sm mb-2" for="bill-input">Bill Total</label>
+          <input
+            class="bg-very-light-grayish-cyan text-very-dark-cyan text-2xl w-full p-2 pl-8 text-right"
+            id="bill-input"
+            type="number"
+            placeholder="0"
+          />
+          <img
+            class="absolute bottom-[15px] left-3 w-[13px]"
+            src="/images/pound-icon.svg"
+          />
+        </div>
         <label class="text-sm mt-6 mb-2 w-full" for="custom">Tip %</label>
         <div class="flex flex-wrap justify-between">
           <button
-            class="cursor-pointer p-4 w-[30%] text-md mb-4 rounded-xl bg-very-dark-cyan text-white"
+            class="percent-button cursor-pointer p-2 w-[30%] text-[20px] mb-4 rounded-lg bg-very-dark-cyan text-white focus:bg-cyan"
             type="button"
           >
             5%
           </button>
           <button
-            class="cursor-pointer p-4 w-[30%] text-md mb-4 rounded-xl bg-very-dark-cyan text-white"
+            class="percent-button cursor-pointer p-2 w-[30%] text-[20px] mb-4 rounded-lg bg-very-dark-cyan text-white focus:bg-cyan"
             type="button"
           >
             10%
           </button>
           <button
-            class="cursor-pointer p-4 w-[30%] text-md mb-4 rounded-xl bg-very-dark-cyan text-white"
+            class="percent-button cursor-pointer p-2 w-[30%] text-[20px] mb-4 rounded-lg bg-very-dark-cyan text-white focus:bg-cyan"
             type="button"
           >
             15%
           </button>
           <button
-            class="cursor-pointer p-4 w-[30%] text-md mb-4 rounded-xl bg-very-dark-cyan text-white"
+            class="percent-button cursor-pointer p-2 w-[30%] text-[20px] mb-4 rounded-lg bg-very-dark-cyan text-white focus:bg-cyan"
             type="button"
           >
             20%
           </button>
           <button
-            class="cursor-pointer p-4 w-[30%] text-md mb-4 rounded-xl bg-very-dark-cyan text-white"
+            class="percent-button cursor-pointer py-2 w-[30%] text-[20px] mb-4 rounded-lg bg-very-dark-cyan text-white focus:bg-cyan"
             type="button"
           >
             25%
           </button>
           <input
-            class="w-[30%] text-md mb-4 rounded-xl bg-very-light-grayish-cyan text-white"
+            id="custom-percent"
+            class="w-[30%] text-[20px] mb-4 rounded-lg bg-very-light-grayish-cyan text-white text-center"
             type="number"
             placeholder="custom"
           />
         </div>
 
-        <div id="people" class="flex flex-wrap flex justify-between">
-          <label class="text-sm mt-6 mb-2" for="people-number"
-            >Number of people split with</label
+        <div id="people" class="flex flex-wrap flex justify-between relative">
+          <label class="text-sm mt-2 mb-2" for="people-number"
+            >Number of people</label
           >
           <input
             id="people-number"
             type="number"
-            class="w-full text-md bg-very-light-grayish-cyan text-white"
+            class="w-full text-2xl bg-very-light-grayish-cyan text-very-dark-cyan p-2 pl-8 text-right"
+            placeholder="1"
+            value="1"
+          />
+          <img
+            class="absolute bottom-[18px] left-3 w-[13px]"
+            src="/images/icon-person.svg"
+            alt="person"
           />
         </div>
       </div>
       <div
         id="right"
-        class="flex flex-col bg-very-dark-cyan rounded-xl w-[50%] p-6 justify-start ml-6 relative py-12 max-sm:block max-sm:w-full max-sm:h-[400px] max-sm:ml-0"
+        class="flex flex-col bg-very-dark-cyan rounded-xl w-[50%] p-6 justify-start ml-6 relative py-12 max-sm:block max-sm:w-full max-sm:h-[400px] max-sm:mr-6 max-sm:mb-12"
       >
         <div id="tip-wrapper" class="flex justify-between px-6 mb-6">
           <div class="flex flex-col" id="tip-text-wrapper">
@@ -109,7 +124,10 @@
             <h3 class="text-grayish-cyan text-[16px]">/ person:</h3>
           </div>
           <div class="flex flex-col" id="tip-value-wrapper">
-            <span class="text-cyan font-semibold text-3xl" id="tip-value"
+            <span
+              id="total-tip"
+              class="text-cyan font-semibold text-3xl max-sm:text-2xl"
+              id="tip-value"
               >£0.00</span
             >
           </div>
@@ -120,7 +138,10 @@
             <h3 class="text-grayish-cyan text-[16px]">/ person:</h3>
           </div>
           <div class="flex flex-col" id="bill-value-wrapper">
-            <span class="text-cyan font-semibold text-3xl" id="tip-value"
+            <span
+              id="total-bill"
+              class="text-cyan font-semibold text-3xl max-sm:text-2xl"
+              id="tip-value"
               >£0.00</span
             >
           </div>
@@ -129,13 +150,15 @@
           class="button-wrapper absolute max-sm:w-full bottom-[40px] px-6 w-full right-0"
         >
           <button
+            id="reset"
             type="button"
-            class="w-full bg-cyan rounded-md uppercase px-6 py-2"
+            class="w-full bg-cyan rounded-md uppercase px-6 py-2 text-[18px]"
           >
             reset
           </button>
         </div>
       </div>
     </main>
+    <script src="/script.js"></script>
   </body>
 </html>
