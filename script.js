@@ -1,51 +1,74 @@
 // input fields
-let billInput = document.getElementById("bill-input"); // bill input element
-let peopleInput = document.getElementById("people-number"); //people number input element
+let billInput = document.getElementById("bill-input");
+let peopleInput = document.getElementById("people-number");
+let customPercentage = document.getElementById("custom-percent");
 
 // final numbers
-let totalTip = document.getElementById("total-tip"); //final tip element
-let totalBill = document.getElementById("total-bill"); //final bill element
+let totalTip = document.getElementById("total-tip");
+let totalBill = document.getElementById("total-bill");
+
+// error text
+let errorText = document.getElementById("error");
 
 // percent buttons/input
-let initialTip = 0; // initial
-let percentageButtons = document.querySelectorAll(".percent-button"); // all percent buttons
-let customPercentage = document.getElementById("custom-percent"); // custom input field
-
-// reset button
-let resetButton = document.getElementById("reset"); // reset button
+let initialTip = 0;
+let percentageButtons = document.querySelectorAll(".percent-button");
+let resetButton = document.getElementById("reset");
 
 // event listeners
-billInput.addEventListener("input", calculate); // runs calculate() on change on input
-resetButton.addEventListener("click", reset); // resets on click
+billInput.addEventListener("input", calculate);
+resetButton.addEventListener("click", reset);
+peopleInput.addEventListener("input", peopleNumber);
 
-let finalTipValue = 0;
-let finalBillValue = 0;
 let peopleValue = 1;
 let floatedButtonVal;
+
+function peopleNumber() {
+  if (peopleInput.value <= 0) {
+    errorText.innerHTML = "Someone has to pay the bill!";
+  } else {
+    errorText.innerHTML = "";
+    peopleValue = peopleInput.value;
+    calculate();
+  }
+}
 
 // get values from percentage buttons
 percentageButtons.forEach(function (button) {
   button.addEventListener("focus", function () {
     buttonVal = button.innerHTML;
     floatedButtonVal = parseFloat(buttonVal);
-    calculate();
+    if (billInput.value <= 0) {
+      null;
+    } else {
+      calculate();
+    }
   });
 });
 
 function calculate() {
-  // getting input to be number
+  // get input & make it a number
   let billEntry = parseFloat(billInput.value);
-
-  if (floatedButtonVal === undefined) {
+  console.log(billEntry);
+  if (
+    floatedButtonVal === undefined ||
+    (floatedButtonVal === NaN && peopleValue <= 1)
+  ) {
     totalTip.innerHTML = "0.00";
-    totalBill.innerHTML = `£${Math.round(billEntry * 1e2) / 1e2}`;
+    billCalc = Math.round(billEntry * 1e2) / 1e2;
+    preBill = billCalc / peopleValue;
+    console.log(preBill);
+    totalBill.innerHTML = `${Math.floor(preBill * 100) / 100}`;
   } else {
-    let TipValue = (billEntry / 100) * Math.round(floatedButtonVal);
+    //tip
     let tipCalc = (billEntry / 100) * floatedButtonVal;
-    totalTip.innerHTML = `£${tipCalc.toFixed(2)}`;
+    let totalTipCalc = tipCalc / peopleValue;
+    totalTip.innerHTML = `${Math.floor(totalTipCalc * 100) / 100}`;
     //bill
     let billCalc = tipCalc + billEntry;
-    totalBill.innerHTML = `£${billCalc.toFixed(2)}`;
+    let totalBillCalc = billCalc / peopleValue;
+
+    totalBill.innerHTML = `${Math.floor(totalBillCalc * 100) / 100}`;
   }
 }
 

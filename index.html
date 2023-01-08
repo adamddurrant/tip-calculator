@@ -46,6 +46,7 @@
         <div class="relative" id="bill-total-wrapper">
           <label class="text-sm mb-2" for="bill-input">Bill Total</label>
           <input
+            required
             class="bg-very-light-grayish-cyan text-very-dark-cyan text-2xl w-full p-2 pl-8 text-right"
             id="bill-input"
             type="number"
@@ -90,7 +91,7 @@
           </button>
           <input
             id="custom-percent"
-            class="w-[30%] text-[20px] mb-4 rounded-lg bg-very-light-grayish-cyan text-white text-center"
+            class="w-[30%] text-[20px] mb-4 rounded-lg bg-very-light-grayish-cyan text-very-dark-cyan text-center"
             type="number"
             placeholder="custom"
           />
@@ -113,6 +114,7 @@
             alt="person"
           />
         </div>
+        <p id="error" class="text-red-300 text-sm"></p>
       </div>
       <div
         id="right"
@@ -123,12 +125,16 @@
             <h2 class="text-white text-[19px]">Tip Amount</h2>
             <h3 class="text-grayish-cyan text-[16px]">/ person:</h3>
           </div>
-          <div class="flex flex-col" id="tip-value-wrapper">
+          <div class="flex flex-row" id="tip-value-wrapper">
+            <span
+              class="inline text-cyan font-semibold text-3xl max-sm:text-2xl"
+              >£</span
+            >
             <span
               id="total-tip"
-              class="text-cyan font-semibold text-3xl max-sm:text-2xl"
+              class="text-cyan font-semibold text-3xl max-sm:text-2xl inline"
               id="tip-value"
-              >£0.00</span
+              >0.00</span
             >
           </div>
         </div>
@@ -137,12 +143,16 @@
             <h2 class="text-white text-[19px]">Bill Amount</h2>
             <h3 class="text-grayish-cyan text-[16px]">/ person:</h3>
           </div>
-          <div class="flex flex-col" id="bill-value-wrapper">
+          <div class="flex flex-row" id="bill-value-wrapper">
+            <span
+              class="inline text-cyan font-semibold text-3xl max-sm:text-2xl"
+              >£</span
+            >
             <span
               id="total-bill"
               class="text-cyan font-semibold text-3xl max-sm:text-2xl"
               id="tip-value"
-              >£0.00</span
+              >0.00</span
             >
           </div>
         </div>
