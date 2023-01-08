@@ -15,22 +15,35 @@ let customPercentage = document.getElementById("custom-percent"); // custom inpu
 let resetButton = document.getElementById("reset"); // reset button
 
 // event listeners
-billInput.addEventListener("change", calculate); // event listener & run calculate() on change
+billInput.addEventListener("input", calculate); // event listener & run calculate() on change
 
+let finalTipValue = 0;
+let finalBillValue = 0;
+let peopleValue = 1;
+let floatedButtonVal;
+
+// get values from percentage buttons
 percentageButtons.forEach(function (button) {
   button.addEventListener("focus", function () {
     buttonVal = button.innerHTML;
     floatedButtonVal = parseFloat(buttonVal);
-    console.log(floatedButtonVal);
+    calculate();
   });
 });
 
-let finalBillValue;
-let peopleValue = 1;
-
 function calculate() {
-  totalTip.innerHTML;
-  console.log("running calculate");
-}
+  //tip
+  let billEntry = parseFloat(billInput.value);
 
-console.log(totalTip.innerHTML);
+  if (floatedButtonVal === undefined) {
+    totalTip.innerHTML = "0.00";
+    totalBill.innerHTML = `£${Math.round(billEntry * 1e2) / 1e2}`;
+  } else {
+    let TipValue = (billEntry / 100) * Math.round(floatedButtonVal);
+    let tipCalc = (billEntry / 100) * floatedButtonVal;
+    totalTip.innerHTML = `£${tipCalc.toFixed(2)}`;
+    //bill
+    let billCalc = tipCalc + billEntry;
+    totalBill.innerHTML = `£${billCalc.toFixed(2)}`;
+  }
+}
