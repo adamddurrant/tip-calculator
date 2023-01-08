@@ -2,6 +2,7 @@
 let billInput = document.getElementById("bill-input");
 let peopleInput = document.getElementById("people-number");
 let customPercentage = document.getElementById("custom-percent");
+peopleInput.disabled = true;
 
 // final numbers
 let totalTip = document.getElementById("total-tip");
@@ -49,7 +50,8 @@ percentageButtons.forEach(function (button) {
 function calculate() {
   // get input & make it a number
   let billEntry = parseFloat(billInput.value);
-  console.log(billEntry);
+  peopleInput.disabled = false;
+
   if (
     floatedButtonVal === undefined ||
     (floatedButtonVal === NaN && peopleValue <= 1)
@@ -57,7 +59,6 @@ function calculate() {
     totalTip.innerHTML = "0.00";
     billCalc = Math.round(billEntry * 1e2) / 1e2;
     preBill = billCalc / peopleValue;
-    console.log(preBill);
     totalBill.innerHTML = `${Math.floor(preBill * 100) / 100}`;
   } else {
     //tip
