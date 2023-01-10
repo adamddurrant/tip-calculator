@@ -78,6 +78,9 @@ function reset() {
   totalBill.innerHTML = "0.00";
   billInput.value = "0.00";
   percentageButtons.forEach(function (button) {
+    floatedButtonVal = undefined;
+    peopleInput.value = 1;
+    peopleValue = 1;
     button.blur();
   });
 }
