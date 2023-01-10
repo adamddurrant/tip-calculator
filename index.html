@@ -37,11 +37,11 @@
     <!--main-->
     <main
       id="container"
-      class="max-w-4xl mx-auto rounded-xl shadow-md bg-white mb-20 flex justify-center p-8 max-sm:flex-wrap max-sm:p-2"
+      class="max-w-4xl mx-auto rounded-xl shadow-md bg-white mb-20 flex justify-center p-8 max-[800px]:flex-wrap max-[800px]:p-2"
     >
       <div
         id="left"
-        class="flex flex-col w-[50%] p-6 justify-center max-sm:block max-sm:w-full"
+        class="flex flex-col w-[50%] p-6 justify-center max-[800px]:block max-[800px]:w-full"
       >
         <div class="relative" id="bill-total-wrapper">
           <label class="text-sm mb-2" for="bill-input">Bill Total</label>
@@ -118,7 +118,7 @@
       </div>
       <div
         id="right"
-        class="flex flex-col bg-very-dark-cyan rounded-xl w-[50%] p-6 justify-start ml-6 relative py-12 max-sm:block max-sm:w-full max-sm:h-[400px] max-sm:mr-6 max-sm:mb-12"
+        class="flex flex-col bg-very-dark-cyan rounded-xl w-[50%] p-6 justify-start ml-6 relative py-12 max-[800px]:block max-[800px]:w-full max-[800px]:h-[400px] max-[800px]:mr-6 max-[800px]:mb-12"
       >
         <div id="tip-wrapper" class="flex justify-between px-6 mb-6">
           <div class="flex flex-col" id="tip-text-wrapper">
@@ -127,12 +127,12 @@
           </div>
           <div class="flex flex-row" id="tip-value-wrapper">
             <span
-              class="inline text-cyan font-semibold text-3xl max-sm:text-2xl"
+              class="inline text-cyan font-semibold text-3xl max-[800px]:text-2xl"
               >£</span
             >
             <span
               id="total-tip"
-              class="text-cyan font-semibold text-3xl max-sm:text-2xl inline"
+              class="text-cyan font-semibold text-3xl max-[800px]:text-2xl inline"
               id="tip-value"
               >0.00</span
             >
@@ -145,19 +145,19 @@
           </div>
           <div class="flex flex-row" id="bill-value-wrapper">
             <span
-              class="inline text-cyan font-semibold text-3xl max-sm:text-2xl"
+              class="inline text-cyan font-semibold text-3xl max-[800px]:text-2xl"
               >£</span
             >
             <span
               id="total-bill"
-              class="text-cyan font-semibold text-3xl max-sm:text-2xl"
+              class="text-cyan font-semibold text-3xl max-[800px]:text-2xl"
               id="tip-value"
               >0.00</span
             >
           </div>
         </div>
         <div
-          class="button-wrapper absolute max-sm:w-full bottom-[40px] px-6 w-full right-0"
+          class="button-wrapper absolute max-[800px]:w-full bottom-[40px] px-6 w-full right-0"
         >
           <button
             id="reset"
